@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>马年新年快乐 🐎</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #fdf2f8; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .wish-box { text-align: center; background: white; padding: 30px 40px; /* 盒子缩小：原50px改成30px，更紧凑 */ border-radius: 15px; box-shadow: 0 0 20px #fcc367; }
+        h1 { 
+            color: #e63946; 
+            margin-bottom: 20px; 
+            animation: bounce 1.2s infinite alternate; 
+            font-size: 28px; /* 标题也轻微缩小，适配盒子 */
+        }
+        p { font-size: 18px; color: #333; line-height: 2; }
+        /* 按钮样式 */
+        .btn {
+            margin-top: 20px;
+            padding: 10px 28px;
+            background: #e63946;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #c12938;
+            transform: scale(1.05);
+        }
+        /* 弹窗样式 */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        .modal-content {
+            background: white;
+            padding: 30px 35px; /* 弹窗盒子也同步缩小 */
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 25px #fcc367;
+        }
+        .horse {
+            display: inline-block;
+            animation: shake 2s infinite alternate;
+            margin: 0 5px;
+        }
+        /* 简单动效 */
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-8px); }
+        }
+        @keyframes shake {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(10deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="wish-box">
+        <h1>🧧 马年新年快乐 <span class="horse">🐎</span> 🧧</h1>
+        <p>新岁启封，不负韶华<br>
+        祝你平安喜乐，万事顺意<br>
+        马到成功，年年皆胜意，岁岁皆安康！</p> <!-- ✅ 删掉称呼，改成祝你 -->
+        <button class="btn" onclick="openModal()">点击解锁新年好运</button>
+    </div>
+
+    <!-- 解锁弹窗 -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h1>✨ 马年暴富 喜乐长安 ✨</h1>
+            <p style="margin-top: 20px;">🐎 马跃新程，前程似锦<br>🧧 岁岁无忧，步步生花</p>
+        </div>
+    </div>
+
+    <script>
+        // 点击按钮打开弹窗+播放马叫（只响一声，播放完自动停止）
+        function openModal() {
+            document.getElementById("modal").style.display = "flex";
+            const horseAudio = new Audio("https://www.w3school.com.cn/i/horse.ogg");
+            horseAudio.play().catch(err => {});
+            horseAudio.onended = function() {
+                horseAudio.pause(); // 播放完毕立即暂停，避免重复播放
+                horseAudio.currentTime = 0; // 重置播放进度，确保每次点击都是一声
+            }
+        }
+        // ✅ 已经删除 3秒自动弹窗 代码！页面打开只显示主页面，不会自动弹窗、不会自动叫
+    </script>
+</body>
+</html>
